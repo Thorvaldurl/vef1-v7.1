@@ -22,7 +22,19 @@ let points = 0;
  * @returns `true` ef tala er innan bils, annars `false`.
  */
 function isValidNum(numAsString, min, max) {
-  /* TODO útfæra */
+  if (isNaN(numAsString)) {
+    console.error(numAsString + ' er ekki löglegt gildi')
+    return false;
+  }
+
+ // Ekki á bili
+ if (max < numAsString || numAsString < min) {
+  console.error(numAsString + ' er ekki löglegt gildi')
+  return false;
+}
+
+return true;
+
 }
 
 /**
@@ -32,7 +44,11 @@ function isValidNum(numAsString, min, max) {
  * @returns `null` ef notandi hætti við, annars vali notanda sem tölu.
  */
 function getChoice(numOfCups) {
-  /* TODO útfæra */
+  if(numOfCups==null) {
+    return;
+  }
+    /* TODO eh med hitt scenarioid */
+
 }
 
 /**
@@ -60,6 +76,42 @@ Verður að vera gildi á bilinu [${MIN_NUM_OF_CUPS}, ${MAX_NUM_OF_CUPS}].
     if (numOfCups === null) {
       return;
     }
+
+    if (!isValidNum(numOfCups, 2, 10)) {
+    
+      return;
+    }
+
+    const getChoice = prompt('Hvaða bolla veluru af ' + numOfCups + '?')
+
+    if(numOfCups === null){
+        return;
+    }
+
+    let cups = (randomNumber(1,numOfCups));
+    
+    if (isNaN(getChoice)) {
+      console.error(getChoice + ' er ekki löglegt gildi')
+      return false;
+    }
+
+
+    if(getChoice == cups){
+        alert('Rétt, þú færð 1 stig!')
+        won += 1;
+        played += 1;
+        points += 1;
+        
+    }
+    
+    if(getChoice!=cups){
+        alert('Rangt, boltinn var í bolla ' + cups)
+        played += 1;
+    }
+
+    
+    confirm('Spila aftur?')
+   
   /* TODO útfæra */
   } while (true)
 }
@@ -68,5 +120,8 @@ Verður að vera gildi á bilinu [${MIN_NUM_OF_CUPS}, ${MAX_NUM_OF_CUPS}].
  * Birtir stöðu spilara.
  */
 function games() {
+
+  console.log('Leikir spilaðir: ' + played + ' Unnir leikir: ' + won + ' Stig: ' + points)
+
   /* TODO útfæra */
 }
